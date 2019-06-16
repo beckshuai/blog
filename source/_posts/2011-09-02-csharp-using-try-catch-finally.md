@@ -1,6 +1,6 @@
 ---
 title: 【C#】小心使用Try,Catch,finally
-tags: C#
+tags: .NET
 ---
 ## 1.使用try{}finally{}
 

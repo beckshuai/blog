@@ -1,11 +1,10 @@
 # Header
 menu:
-  Home: /
-  Archives: /archives
-rss: /atom.xml
+  首页: /
+  归档: /archives
 
 # Content
-excerpt_link: Read More
+excerpt_link: 阅读更多 
 fancybox: true
 
 # Sidebar
@@ -25,7 +24,7 @@ index_widgets:
 
 # widget behavior
 archive_type: 'monthly'
-show_count: false
+show_count: true
 
 # Miscellaneous
 google_analytics:
@@ -35,3 +34,4 @@ twitter:
 google_plus:
 fb_admins:
 fb_app_id:
+baidu_tongji: true
