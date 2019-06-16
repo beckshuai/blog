@@ -32,7 +32,7 @@ public static void Main()
 {% endcodeblock %}
 ### Output:
 
-![output](http://pic002.cnblogs.com/images/2011/40936/2011090210304789.jpg)
+![output](/imgs/csharp/1.jpg)
 
 
 在Main方法中添加异常处理，使得程序发生异常时不崩溃：
@@ -55,7 +55,7 @@ public static void Main()
 }
 {% endcodeblock %}
 ### Output：
-![output](http://pic002.cnblogs.com/images/2011/40936/2011090210315039.jpg)
+![output](/imgs/csharp/2.jpg)
 
 ## 2.使用try{}catch{}finally{}
 
@@ -82,7 +82,7 @@ public static int GetNumber()
 }	
 {% endcodeblock %}}
 ### Output:
-![output](http://pic002.cnblogs.com/images/2011/40936/2011090210331187.jpg)
+![output](/imgs/csharp/3.jpg))
 
 ## 总结
 
