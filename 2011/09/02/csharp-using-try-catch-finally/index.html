@@ -7,21 +7,21 @@
   
   <title>【C#】小心使用Try,Catch,finally | 互联网码农的日常</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##1.使用try{}finally{} 在有返回值的函数中使用try{}finall{}，未使用catch捕获异常，程序将崩溃:">
-<meta name="keywords" content="程序员,互联网">
+  <meta name="description" content="1.使用try{}finally{}在有返回值的函数中使用try{}finall{}，未使用catch捕获异常，程序将崩溃:">
+<meta name="keywords" content="C#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【C#】小心使用Try,Catch,finally">
 <meta property="og:url" content="http://shuaiwubin.com/2011/09/02/csharp-using-try-catch-finally/index.html">
 <meta property="og:site_name" content="互联网码农的日常">
-<meta property="og:description" content="##1.使用try{}finally{} 在有返回值的函数中使用try{}finall{}，未使用catch捕获异常，程序将崩溃:">
+<meta property="og:description" content="1.使用try{}finally{}在有返回值的函数中使用try{}finall{}，未使用catch捕获异常，程序将崩溃:">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="http://pic002.cnblogs.com/images/2011/40936/2011090210304789.jpg">
 <meta property="og:image" content="http://pic002.cnblogs.com/images/2011/40936/2011090210315039.jpg">
 <meta property="og:image" content="http://pic002.cnblogs.com/images/2011/40936/2011090210331187.jpg">
-<meta property="og:updated_time" content="2019-06-16T01:56:02.000Z">
+<meta property="og:updated_time" content="2019-06-16T02:06:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【C#】小心使用Try,Catch,finally">
-<meta name="twitter:description" content="##1.使用try{}finally{} 在有返回值的函数中使用try{}finall{}，未使用catch捕获异常，程序将崩溃:">
+<meta name="twitter:description" content="1.使用try{}finally{}在有返回值的函数中使用try{}finall{}，未使用catch捕获异常，程序将崩溃:">
 <meta name="twitter:image" content="http://pic002.cnblogs.com/images/2011/40936/2011090210304789.jpg">
   
     <link rel="alternate" href="/atom.xml" title="互联网码农的日常" type="application/atom+xml">
@@ -95,28 +95,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##1.使用try{}finally{}</p>
-<p>在有返回值的函数中使用try{}finall{}，未使用catch捕获异常，程序将崩溃:</p>
+        <h2 id="1-使用try-finally"><a href="#1-使用try-finally" class="headerlink" title="1.使用try{}finally{}"></a>1.使用try{}finally{}</h2><p>在有返回值的函数中使用try{}finall{}，未使用catch捕获异常，程序将崩溃:</p>
 <a id="more"></a>
 <figure class="highlight c"><figcaption><span>#</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">GetNumber</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> j =<span class="number">0</span>;</span><br><span class="line">        i =<span class="number">5</span>/j;<span class="comment">//引发异常</span></span><br><span class="line">    &#125;</span><br><span class="line">    finally</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">"输出来自方法GetNumber的finally块"</span>);</span><br><span class="line">        <span class="comment">//return -2;//finally中不能含有return语句</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i =GetNumber();<span class="comment">//发生异常并且未捕获,未能获得返回值</span></span><br><span class="line">    Console.WriteLine(<span class="string">"number:&#123;0&#125;"</span>,i);</span><br><span class="line">    Console.ReadKey();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####Output:</p>
-<p><img src="http://pic002.cnblogs.com/images/2011/40936/2011090210304789.jpg" alt="output"></p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output:"></a>Output:</h3><p><img src="http://pic002.cnblogs.com/images/2011/40936/2011090210304789.jpg" alt="output"></p>
 <p>在Main方法中添加异常处理，使得程序发生异常时不崩溃：</p>
 <figure class="highlight c"><figcaption><span>#</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> i =GetNumber();<span class="comment">//发生异常并且未捕获,未能获得返回值</span></span><br><span class="line">        Console.WriteLine(<span class="string">"number:&#123;0&#125;"</span>,i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">"输出来自main的catch块"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    finally</span><br><span class="line">    &#123;</span><br><span class="line">        Console.ReadKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####Output：<br><img src="http://pic002.cnblogs.com/images/2011/40936/2011090210315039.jpg" alt="output"></p>
-<p>##2.使用try{}catch{}finally{}</p>
-<p>在方法GetNumber中添加catch块捕获异常：</p>
+<h3 id="Output："><a href="#Output：" class="headerlink" title="Output："></a>Output：</h3><p><img src="http://pic002.cnblogs.com/images/2011/40936/2011090210315039.jpg" alt="output"></p>
+<h2 id="2-使用try-catch-finally"><a href="#2-使用try-catch-finally" class="headerlink" title="2.使用try{}catch{}finally{}"></a>2.使用try{}catch{}finally{}</h2><p>在方法GetNumber中添加catch块捕获异常：</p>
 <figure class="highlight c"><figcaption><span>#</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">GetNumber</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> j =<span class="number">0</span>;</span><br><span class="line">        i =<span class="number">5</span>/j;<span class="comment">//引发异常</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> </span><br><span class="line">    &#123;</span><br><span class="line">        i=<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    finally</span><br><span class="line">    &#123;</span><br><span class="line">	    Console.WriteLine(<span class="string">"输出来自方法GetNumber的finally块"</span>);</span><br><span class="line">        <span class="comment">//return -2;//finally中不能含有return语句</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure>}
-<p>####Output:<br><img src="http://pic002.cnblogs.com/images/2011/40936/2011090210331187.jpg" alt="output"></p>
-<p>###总结</p>
-<p>  在含有调用含有返回值的方法时，如果必须保证得到返回值且在被调用函数中使用了try块，则必须同时在被调用函数中使用catch块。</p>
+<h3 id="Output-1"><a href="#Output-1" class="headerlink" title="Output:"></a>Output:</h3><p><img src="http://pic002.cnblogs.com/images/2011/40936/2011090210331187.jpg" alt="output"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>  在含有调用含有返回值的方法时，如果必须保证得到返回值且在被调用函数中使用了try块，则必须同时在被调用函数中使用catch块。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shuaiwubin.com/2011/09/02/csharp-using-try-catch-finally/" data-id="cjwyb1cqx0000oxtbkw3k15xs" class="article-share-link">Share</a>
+      <a data-url="http://shuaiwubin.com/2011/09/02/csharp-using-try-catch-finally/" data-id="cjwybiqjx0000rdtb3h29bhhe" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li></ul>
+
     </footer>
   </div>
   
@@ -146,9 +144,23 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vagrant/">Vagrant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/skype/">skype</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/skype/" style="font-size: 10px;">skype</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
